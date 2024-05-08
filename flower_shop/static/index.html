@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KyivLuxeBouquets</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/favicon.webp" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="description" content="A site for selling flower arrangements">
+</head>
+<body>
+    <a href="" id="scrollToTopBtn"><i class="fa-solid fa-arrow-up"></i></a>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closeModalBtn">&times;</span>
+          <div class="forma">
+            <h2>Greetings! <br> Welcome to luxury gift shop.</h2>
+            <p>Use your mobile number to sign up or log in</p>
+              <div class="forms">
+                  <input type="tel" class="phone" id="phone" placeholder="+380 XX XXX XX XX" required maxlength="16">
+                  <button type="button" class="button-book">Continue</button>
+              </div>
+            <div class="divider-or">
+                <hr>
+                <span>or</span>
+                <hr>
+            </div>
+            <div class="login-form">
+                <h6>Instantly login or sign up via Google</h6>
+                <div class="forms">
+                    <a href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fwww.google.com.ua%2F%3Fhl%3Duk&ec=GAlAmgQ&hl=uk&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-1089564377%3A1703183165898088&theme=glif">
+                    <img src="img/Google.webp" alt="img">continue with google</a>
+                    <a href="https://www.apple.com/ua/">
+                    <img src="img/Apple.webp" alt="img">continue with apple</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <header>
+        <nav class="header-menu" id="window">
+            <div class="menu-icons">
+                <div class="main-menu n-left" id="menuIcons">
+                    <div id="iconOpen">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <div class="hide" id="iconClose">
+                        <i class="fa-solid fa-xmark icon"></i>
+                    </div>
+                </div>
+                <div class="main-menu n-right" id="iconOpenShop"><i class="fa-solid fa-bag-shopping"></i></div>
+            </div>
+            <div class="open-menu hide" id="meinMenu">
+                <a href="#" class="link-wrap" id="openModalBtn"><h5>Telegram</h5></a>
+                <a href="Shop/index.html" class="link-wrap"><h5>Shop</h5></a>
+                <a href="Subscr/index.html" class="link-wrap"><h5>Servise</h5></a>
+                <a href="#contact-section" class="link-wrap"><h5>Contact</h5></a>
+                <a href="AboutUs/index.html" class="link-wrap"><h5>About us</h5></a>
+                <div class="links-wrap">
+                    <div class="rules-links">
+                        <a href="#">Shipping & returns</a>
+                        <a href="#">Terms & conditions</a>
+                        <a href="#">Privacy policy</a>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="social-m-link">
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
+                        <a href="https://www.pinterest.ca" target="_blank"><i class="fa-brands fa-pinterest icon"></i></a>
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
+                        <a href="https://twitter.com/?lang=uk" target="_blank"><i class="fa-brands fa-twitter icon"></i></a>
+                        <a href="https://web.telegram.org/k/" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-pc hide">
+                <ul class="menu-list">
+                    <li class="menu n-left"><a href="Shop/index.html">Shop</a></li>
+                    <li class="menu n-left"><a href="#contact-section">Contact</a></li>
+                </ul>
+                <ul class="menu-list">
+                    <li class="menu n-right"><a href="#">Telegram</a></li>
+                    <li class="menu n-right"><a href="Cart/cart.html">Cart <span id="cartItemCount">0</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        <section class="main-section">
+            <div class="left-colum">
+                <div class="content-column">
+                    <h1 class="heading">Kyiv <br> LuxeBouquets®</h1>
+                    <p class="content-text column">Discover Uniquely Crafted Bouquets and Gifts
+                        for Any Occasion: Spread Joy with Our Online Flower Delivery Service</p>
+                </div>
+                <div class="block-content-row">
+                    <div class="content-row">
+                        <img src="img/imghero.webp" alt="flowers" class="img-hero">
+                    </div>
+                    <div class="content-row">
+                        <p class="content-text row">Experience the joy of giving with our modern floral studio.
+                            Order online and send fresh flowers, plants and gifts today.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="category">
+                <div class="content-card">
+                    <div class="card-category">
+                        <h3 class="category-title">Fresh Flowers</h3>
+                        <a href="Category/fresh/index.html" class="button-shop">Shop now<i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-item">
+                        <img src="img/carditem1.webp" alt="flowers">
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-item">
+                        <img src="img/carditem2.webp" alt="flowers">
+                    </div>
+                    <div class="card-category">
+                        <h3 class="category-title">Dried Flowers</h3>
+                        <a href="Category/dried/index.html" class="button-shop"><i class="fa-solid fa-arrow-left-long"></i>Shop now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-category">
+                        <h3 class="category-title">Live Plants</h3>
+                        <a href="Category/live/index.html" class="button-shop">Shop now<i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-item">
+                        <img src="img/carditem3.webp" alt="flowers">
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-item">
+                        <img src="img/carditem4.webp" alt="flowers">
+                    </div>
+                    <div class="card-category">
+                        <h3 class="category-title">Aroma Candels</h3>
+                        <a href="Category/aroma/index.html" class="button-shop"><i class="fa-solid fa-arrow-left-long"></i>Shop now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-category">
+                        <h3 class="category-title">Fresheners</h3>
+                        <a href="Category/fresheners/index.html" class="button-shop">Shop now<i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-item">
+                        <img src="img/carditem5.webp" alt="flowers">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="aboutUs-section borderRL">
+            <div class="section-title">
+                <p>About us</p>
+            </div>
+            <div class="content-abus">
+                <p class="block-subtitle">our story</p>
+                <h3 class="block-title">Kyiv LuxeBouquets</h3>
+                <p class="block-text">We are a modern local floral studio, which specializes in the design
+                    and delivery of unique bouquets. We have the best florists who carefully
+                    select each look, our studio cooperates directly with farms for growing
+                    different flowers, so we always have fresh flowers, which are collected
+                    by our florists in exquisite bouquets. We have a collection of fresh
+                    bouquets, collections of dried bouquets, house plants, as well as
+                    fragrant candles from luxury brands to create the perfect atmosphere.
+                    Make someone's day amazing by sending flowers, plants and gifts the same
+                    or next day. Ordering flowers online has never been easier.</p>
+                <a href="AboutUs/index.html" class="button-lm">learn more</a>
+            </div>
+        </section>
+        <section class="benefits-section borderRL">
+            <div class="section-title">
+                <p>Why choose us?</p>
+            </div>
+            <div class="content-benefit">
+                <div class="benefit-block">
+                    <h3 class="block-title">Stylish bouquets by florists</h3>
+                    <p class="block-text">At our floral studio, our professional florists
+                        craft the most elegant and stylish bouquets using only the freshest
+                        and highest quality materials available. We stay up-to-date with the
+                        latest floral design trends and offer unique arrangements that are
+                        sure to impress. Let us brighten up your day with our stunning bouquets
+                        and same-day delivery service.</p>
+                </div>
+                <div class="benefit-block">
+                    <h3 class="block-title">On-time delivery</h3>
+                    <p class="block-text">Never miss a moment with our on-time flower delivery service.
+                        Our couriers will deliver your bouquet personally, without boxes, to ensure
+                        it arrives in perfect condition. Trust us to deliver your thoughtful gift reliably.</p>
+                </div>
+                <div class="benefit-block">
+                    <h3 class="block-title">Safe payment</h3>
+                    <p class="block-text">You can feel secure when placing an order with us, as we use
+                        industry-standard security measures to protect your payment information.
+                        Your transaction will be safe and hassle-free, so you can shop with confidence.</p>
+                </div>
+                <div class="benefit-block">
+                    <h3 class="block-title">Subscription by your needs</h3>
+                    <p class="block-text">With our subscription service tailored to your specific needs,
+                        you can enjoy the convenience of having beautiful bouquets delivered straight
+                        to your door at regular intervals. Our flexible service is perfect for busy
+                        individuals or those who want to ensure they always have fresh flowers on hand.
+                        You'll save time and money with this hassle-free solution to your floral needs.</p>
+                </div>
+            </div>
+        </section>
+        <section class="contact-section borderRL" id="contact-section">
+            <div class="column-folow">
+                <img src="img/bg-follow.webp" alt="bg">
+                <div class="follow-us">
+                    <h3 class="follow-text">Follow us</h3>
+                    <div class="social-block">
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
+                        <a href="https://www.pinterest.ca" target="_blank"><i class="fa-brands fa-pinterest icon"></i></a>
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
+                        <a href="https://twitter.com/?lang=uk" target="_blank"><i class="fa-brands fa-twitter icon"></i></a>
+                        <a href="https://web.telegram.org/k/" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="column-contact">
+                <div class="top-block">
+                    <div class="section-title border-none">
+                        <p>To Contact Us</p>
+                    </div>
+                    <div class="from-block">
+                        <p>We will call you back</p>
+                        <div class="forms">
+                            <input type="tel" class="phone" id="phoneT" id="phoneInput"  placeholder="+380 XX XXX XX XX" required maxlength="16">
+                            <button type="button" class="button-book"  id="submitBtn">book a call</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-block">
+                    <div class="column-phone">
+                        <div class="title-border">
+                            <h3 class="block-title">Phone</h3>
+                        </div>
+                        <div class="href-phone">
+                            <a href="tel:380980099777"><i class="fa-solid fa-phone"></i>+380980099777</a>
+                            <a href="tel:380980099111"><i class="fa-solid fa-phone"></i>+380980099111</a>
+                        </div>
+                    </div>
+                    <div class="column-address">
+                        <div class="title-border">
+                            <h3 class="block-title">Address</h3>
+                        </div>
+                        <div class="href-address">
+                            <p>Opening hours: 8 to 11 p.m.</p>
+                            <a href="https://www.google.com/maps/place/вулиця+Хрещатик,+15%2F4,+Київ,+01001/@50.4475644,30.5244668,17z/data=!3m1!4b1!4m6!3m5!1s0x40d4ce5153121d55:0x38f9d72576f984b4!8m2!3d50.4475644!4d30.5244668!16s%2Fg%2F11nnkmnb38?entry=ttu"
+                            target="_blank"><i class="fa-solid fa-location-dot"></i> 15/4 Khreshchatyk Street, Kyiv</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="service-section borderRL">
+            <div class="section-title border-top">
+                <p>Our Service</p>
+            </div>
+            <div class="service">
+                <div class="service-bg">
+                    <img src="img/bd-service.webp" alt="bd-service">
+                </div>
+                <div class="service-block">
+                    <p class="block-subtitle">service</p>
+                    <h2 class="service-title">Flower Subcriptions</h2>
+                    <p class="block-text">Experience the convenience and savings of regular
+                        flower deliveries with our flexible subscription
+                        service - up to 30% more profitable than one-time purchases.</p>
+                    <a href="Subscr/index.html" class="button-lm">subscribe now</a>
+                </div>
+            </div>
+            <div class="service-block-two border-top bg-img white-text">
+                <p class="block-subtitle">service</p>
+                <h2 class="service-title">Wedding & Event Decor</h2>
+                <p class="block-text white-text">Let our team of expert florists and designers create stunning,
+                    on-trend floral décor for your special day. Trust us to bring your vision to life.</p>
+                <a href="Subscr/index.html" class="button-lm white-btn">inquire now</a>
+            </div>
+        </section>
+        <section class="reviews-section borderRL">
+            <div class="content">
+                <div class="text-content">
+                    <div class="overline">
+                        <div class="google">
+                            <h3>Telegram</h3>
+                            <p class="block-subtitle">reviews</p>
+                        </div>
+                        <h2 class="service-title">Our Clients say</h2>
+                    </div>
+                    <div class="slider">
+                        <div class="mask">
+                            <span class="left-arrow hide"><i class="fa-solid fa-chevron-left"></i></span>
+                            <div class="slide">
+                                &#34;Ordered flowers online and they were the best bouquet!
+                                Impressed everyone around.
+                                Highly recommend this flower shop!&#34;
+                                <h6>&#8211; Ronald Richards</h6>
+                            </div>
+                            <div class="slide">
+                                &#34;Another great experience with this flower shop.
+                                Their arrangements are always stunning.
+                                Will definitely order again!&#34;
+                                <h6>&#8211; Jane Smith</h6>
+                            </div>
+                            <div class="slide">
+                                &#34;I've been a customer for years and I&#39;m never disappointed.
+                                The quality and service are top-notch!&#34;
+                                <h6>&#8211; John Doe</h6>
+                            </div>
+                            <div class="slide">
+                                &#34;Beautiful flowers and fast delivery.
+                                My wife loved the surprise.
+                                Thank you for making her day!&#34;
+                                <h6>&#8211; Mary Johnson</h6>
+                            </div>
+                            <span class="right-arrow hide"><i class="fa-solid fa-chevron-right"></i></span>
+                        </div>
+                        <div class="slide-nav">
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="button-lm">Read reviews</a>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-flex borderRL">
+                <div class="wrap-footer">
+                    <p>Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas...
+                        <br>Reminds you 7 days before. No spam or sharing your address</p>
+                    <div class="froms-block">
+                        <input type="text" class="email" placeholder="Your Email">
+                        <button type="button" class="button-rem">remind</button>
+                    </div>
+                </div>
+                <div class="wrap-footer">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <div class="wrap-links">
+                        <p class="fr-subtitle">Address</p>
+                        <a href="https://www.google.com/maps/place/вулиця+Хрещатик,+15%2F4,+Київ,+01001/@50.4475644,30.5244668,17z/data=!3m1!4b1!4m6!3m5!1s0x40d4ce5153121d55:0x38f9d72576f984b4!8m2!3d50.4475644!4d30.5244668!16s%2Fg%2F11nnkmnb38?entry=ttu"
+                        target="_blank">15/4 Khreshchatyk Street, Kyiv</a>
+                    </div>
+                    <div class="wrap-links">
+                        <p class="fr-subtitle">Phone</p>
+                        <a href="tel:380980099777">+380980099777</a>
+                    </div>
+                    <div class="wrap-links">
+                        <p class="fr-subtitle">General Enquiry:</p>
+                        <a href="mailto:Kiev.Florist.Studio@gmail.com">Kiev.Florist.Studio@gmail.com</a>
+                    </div>
+                    <div class="social-links">
+                        <h5 class="footer-title">Follow Us</h5>
+                        <div class="social-footer">
+                            <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
+                            <a href="https://www.pinterest.ca" target="_blank"><i class="fa-brands fa-pinterest icon"></i></a>
+                            <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
+                            <a href="https://twitter.com/?lang=uk" target="_blank"><i class="fa-brands fa-twitter icon"></i></a>
+                            <a href="https://web.telegram.org/k/" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-flex borderRL">
+                <div class="wrap-footer">
+                    <h5 class="footer-title">Shop</h5>
+                    <div class="wrap-links">
+                        <a href="#">All Products</a>
+                        <a href="#">Fresh Flowers</a>
+                        <a href="#">Dried Flowers</a>
+                        <a href="#">Live Plants</a>
+                        <a href="#">Designer Vases</a>
+                        <a href="#">Aroma Candles</a>
+                        <a href="#">Freshener Diffuser</a>
+                    </div>
+                    <h5 class="footer-title">Service</h5>
+                    <div class="wrap-links">
+                        <a href="#">Flower Subcription</a>
+                        <a href="#">Wedding & Event Decor</a>
+                    </div>
+                </div>
+                <div class="wrap-footer">
+                    <h5 class="footer-title">About Us</h5>
+                    <div class="wrap-links">
+                        <a href="#">Our story</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="wrap-links">
+                        <a href="#">Shipping & returns</a>
+                        <a href="#">Terms & conditions</a>
+                        <a href="#">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="scripts/script.js" defer></script>
+</body>
+</html>
