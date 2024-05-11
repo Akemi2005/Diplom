@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cartItems.forEach(item => {
             subtotal += item.totalPrice * item.quantity;
         });
-        const shipping = 2 + 0.02 * subtotal;
+        const shipping = 5;
         const total = subtotal + shipping;
 
         subtotalAmountElement.textContent = '$' + subtotal.toFixed(2);
@@ -118,33 +118,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const submitOrderBtn = document.getElementById('submitOrderBtn');
-    const emailInput = document.getElementById('emailInput');
-    const nameInput = document.getElementById('nameInput');
-    const phoneInput = document.getElementById('phoneInput');
-    const recipientName = document.getElementById('recipientNameInput').value;
-    const recipientPhone = document.getElementById('recipientPhoneInput').value;
-    const deliveryDate = document.getElementById('deliveryDateInput').value;
-    const deliveryTime = document.getElementById('deliveryTimeInput').value;
-    const street = document.getElementById('streetInput').value;
-    const apartment = document.getElementById('apartmentInput').value;
-    const cardNumberInput = document.getElementById('cardNumberInput');
-    const expiryDateInput = document.getElementById('expiryDateInput');
-    const cvvInput = document.getElementById('cvvInput');
 
     submitOrderBtn.addEventListener('click', async function () {
-        if (cardNumberInput.value.trim() === '' || expiryDateInput.value.trim() === '' || cvvInput.value.trim() === '') {
-            alert('Please fill in all required fields.');
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const isAllFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+        if (!isAllFilled) {
+            alert('Please fill in all fields.');
             return;
         }
-        const email = emailInput.value;
-        const name = nameInput.value;
-        const phone = phoneInput.value;
-        const recipientName = recipientNameInput.value;
-        const recipientPhone = recipientPhoneInput.value;
-        const deliveryDate = deliveryDateInput.value;
-        const deliveryTime = deliveryTimeInput.value;
-        const street = streetInput.value;
-        const apartment = apartmentInput.value;
+        if (cartItems.length === 0) {
+            alert('Cart is empty. Please add items to cart before placing an order.');
+            return;
+        }
+
+        const email = document.getElementById('emailInput').value;
+        const name = document.getElementById('nameInput').value;
+        const phone = document.getElementById('phoneInput').value;
+        const recipientName = document.getElementById('recipientNameInput').value;
+        const recipientPhone = document.getElementById('recipientPhoneInput').value;
+        const deliveryDate = document.getElementById('deliveryDateInput').value;
+        const deliveryTime = document.getElementById('deliveryTimeInput').value;
+        const street = document.getElementById('streetInput').value;
+        const apartment = document.getElementById('apartmentInput').value;
         const subtotal = parseFloat(subtotalAmountElement.textContent.replace('$', ''));
         const shipping = parseFloat(shippingAmountElement.textContent.replace('$', ''));
         const total = parseFloat(totalAmountElement.textContent.replace('$', ''));
@@ -163,9 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
             subtotal: subtotal,
             shipping: shipping,
             total: total,
-            cardNumber: cardNumberInput.value.trim(),
-            expiryDate: expiryDateInput.value.trim(),
-            cvv: cvvInput.value.trim()
         };
 
         try {
@@ -189,12 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 deliveryTimeInput.value = '';
                 streetInput.value = '';
                 apartmentInput.value = '';
-                cardNumberInput.value = '';
-                expiryDateInput.value = '';
-                cvvInput.value = '';
                 cartItems = [];
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 displayCartItemsOnCartPage();
+                location.reload();
             } else {
                 alert('Failed to submit order. Please try again later.');
             }
@@ -203,8 +193,65 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Failed to submit order. Please try again later.');
         }
     });
+
+    function generateOrderNumber() {
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = ('0' + (now.getMonth() + 1)).slice(-2); // Додаємо 0, якщо місяць менше 10
+        const day = ('0' + now.getDate()).slice(-2); // Додаємо 0, якщо день менше 10
+        const hours = ('0' + now.getHours()).slice(-2); // Додаємо 0, якщо година менше 10
+        const minutes = ('0' + now.getMinutes()).slice(-2); // Додаємо 0, якщо хвилина менше 10
+        const seconds = ('0' + now.getSeconds()).slice(-2); // Додаємо 0, якщо секунда менше 10
+        const randomNum = Math.floor(Math.random() * 9000) + 1000;
+
+        return `${year}${month}${day}${hours}${minutes}${seconds}${randomNum}`;
+    }
+
+    const totalAmount = parseFloat(totalAmountElement.textContent.replace('$', ''));
+    const description = 'Оплата замовлення на сайті';
+    const orderNumber = generateOrderNumber();
+
+    const data = {
+        public_key: 'sandbox_i98137437047',
+        version: 3,
+        action: 'pay',
+        amount: totalAmount,
+        currency: 'USD',
+        description: description,
+        order_id: orderNumber,
+        sandbox: 1
+    };
+
+    const requestData = encodeURIComponent(JSON.stringify(data));
+
+    const signature = generateSignature(requestData);
+
+    const privatPayURL = `https://www.liqpay.ua/api/3/checkout?data=${requestData}&signature=${signature}`; // Додайте підпис (signature)
+
+    const privatPayButton = document.createElement('button');
+    privatPayButton.textContent = 'Оплатити через PrivatPay';
+
+    privatPayButton.addEventListener('click', function() {
+        window.location.href = privatPayURL;
+    });
+
+    const orderButtonContainer = document.getElementById('orderButtonContainer');
+    orderButtonContainer.appendChild(privatPayButton);
+
+    function generateSignature(data) {
+        const privateKey = 'sandbox_aXeCS7FocvdqaY0uVRXbkKjZZ82II9qtRp2GqoFO';
+        const hash = CryptoJS.SHA256(privateKey + data + privateKey);
+        return hash.toString(CryptoJS.enc.Hex);
+    }
+
+    console.log("Request Data:", requestData);
+    console.log("Generated Signature:", signature);
+    console.log("PrivatPay URL:", privatPayURL);
+    console.log("Дані перед генерацією підпису:", data);
+    console.log("Згенерований підпис:", signature);
 });
-// Функція для оновлення кількості товарів у кошику
+
 function updateCartItemCount() {
     const cartItemCountSpan = document.getElementById('cartItemCount');
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];

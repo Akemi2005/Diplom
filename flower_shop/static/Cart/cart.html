@@ -12,6 +12,7 @@
 <a href="" id="scrollToTopBtn"><i class="fa-solid fa-arrow-up"></i></a>
 <header>
     <nav class="header-menu" id="window">
+        <span id="cartItemCount">0</span>
         <div class="menu-icons">
             <div class="main-menu n-left" id="menuIcons">
                 <div id="iconOpen">
@@ -21,10 +22,10 @@
                     <i class="fa-solid fa-xmark icon"></i>
                 </div>
             </div>
-            <div class="main-menu n-right" id="iconOpenShop"><i class="fa-solid fa-bag-shopping"></i></div>
+            <a href="#" class="main-menu n-right" id="iconOpenShop"><i class="fa-solid fa-bag-shopping"></i></a>
         </div>
         <div class="open-menu hide" id="meinMenu">
-            <a href="#" class="link-wrap"><h5>Telegram</h5></a>
+            <a href="https://t.me/LuxeBouquetsBot" target="_blank" class="link-wrap"><h5>Telegram</h5></a>
             <a href="../index.html" class="link-wrap"><h5>Shop</h5></a>
             <a href="../Subscr/index.html" class="link-wrap"><h5>Servise</h5></a>
             <a href="../index.html" class="link-wrap"><h5>Contact</h5></a>
@@ -40,9 +41,8 @@
                 <div class="social-m-link">
                     <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
                     <a href="https://www.pinterest.ca" target="_blank"><i class="fa-brands fa-pinterest icon"></i></a>
-                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
                     <a href="https://twitter.com/?lang=uk" target="_blank"><i class="fa-brands fa-twitter icon"></i></a>
-                    <a href="https://web.telegram.org/k/" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
+                    <a href="https://t.me/LuxeBouquetsBot" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
                 </div>
             </div>
         </div>
@@ -52,8 +52,8 @@
                 <li class="menu n-left"><a href="../index.html">Contact</a></li>
             </ul>
             <ul class="menu-list">
-                <li class="menu n-right"><a href="#">Telegram</a></li>
-                <li class="menu n-right"><a href="#">Cart <span id="cartItemCount">0</span></a></li>
+                <li class="menu n-right"><a href="https://t.me/LuxeBouquetsBot" target="_blank">Telegram</a></li>
+                <li class="menu n-right"><a href="#">Cart</a></li>
             </ul>
         </div>
     </nav>
@@ -119,12 +119,8 @@
                         <h6>3 Payment</h6>
                     </div>
                     <div class="order-info">
-                        <input type="text" id="cardNumberInput" placeholder="Card Number" class="order-input">
-                        <div class="address">
-                            <input type="text" id="expiryDateInput" placeholder="MM / YY" class="order-input">
-                            <input type="text" id="cvvInput" placeholder="CVV" class="order-input">
-                        </div>
-                            <button id="submitOrderBtn" class="next">Make a purchase</button>
+                        <button id="submitOrderBtn" class="next">Make a purchase</button>
+                        <div id="orderButtonContainer"></div>
                     </div>
                 </div>
             </div>
@@ -133,11 +129,11 @@
     <footer>
         <div class="footer-flex borderRL">
             <div class="wrap-footer">
-                <p>Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas...
-                    <br>Reminds you 7 days before. No spam or sharing your address</p>
+                <p>More information about our flowers and a convenient chat with the administrator...
+                    <br>In our Telegram bot!
+                    <br>Click on the button below to start chatting.</p>
                 <div class="froms-block">
-                    <input type="text" class="email" placeholder="Your Email">
-                    <button type="button" class="button-rem">remind</button>
+                    <a href="https://t.me/LuxeBouquetsBot" class="button-rem" target="_blank">Telegram</a>
                 </div>
             </div>
             <div class="wrap-footer">
@@ -145,7 +141,7 @@
                 <div class="wrap-links">
                     <p class="fr-subtitle">Address</p>
                     <a href="https://www.google.com/maps/place/вулиця+Хрещатик,+15%2F4,+Київ,+01001/@50.4475644,30.5244668,17z/data=!3m1!4b1!4m6!3m5!1s0x40d4ce5153121d55:0x38f9d72576f984b4!8m2!3d50.4475644!4d30.5244668!16s%2Fg%2F11nnkmnb38?entry=ttu"
-                    target="_blank">15/4 Khreshchatyk Street, Kyiv</a>
+                       target="_blank">15/4 Khreshchatyk Street, Kyiv</a>
                 </div>
                 <div class="wrap-links">
                     <p class="fr-subtitle">Phone</p>
@@ -160,9 +156,8 @@
                     <div class="social-footer">
                         <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram icon"></i></a>
                         <a href="https://www.pinterest.ca" target="_blank"><i class="fa-brands fa-pinterest icon"></i></a>
-                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f icon"></i></a>
                         <a href="https://twitter.com/?lang=uk" target="_blank"><i class="fa-brands fa-twitter icon"></i></a>
-                        <a href="https://web.telegram.org/k/" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
+                        <a href="https://t.me/LuxeBouquetsBot" target="_blank"><i class="fa-brands fa-telegram icon"></i></a>
                     </div>
                 </div>
             </div>
@@ -200,5 +195,6 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
