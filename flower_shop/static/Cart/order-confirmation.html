@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="icon" href="../img/favicon.webp" type="image/webp">
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order_id');
+            if (orderId) {
+                document.getElementById('order-id').textContent = orderId;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank you for your order!</h1>
+        <p>Your order number is: <span id="order-id"></span></p>
+        <p class="small-text">*If the funds are not debited to you, the created payment with your order will arrive in the email</p>
+    </div>
+
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = {"default_language":"en","languages":["en","uk"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"en":"usa"}}</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    <a href="../index.html" class="home">Go to home page</a>
+</body>
+</html>

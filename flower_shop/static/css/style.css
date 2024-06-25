@@ -120,6 +120,13 @@ i {
   border: 1px solid #121212;
 }
 
+.btn-sel.clicked {
+  color: #121212;
+  background-color: #fff;
+  border: 1px solid #121212;
+}
+
+
 .white-btn:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
@@ -477,6 +484,7 @@ i {
   width: 100%;
   height: 100%;
   color: #121212;
+  cursor: pointer;
 }
 
 .content-card {
@@ -923,7 +931,6 @@ i {
 }
 
 .google h3{
-  color: #0088cc;
   text-transform: uppercase;
 }
 
@@ -1888,13 +1895,11 @@ input[type='radio'] {
 
 .next {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 16px 24px 14px;
-  gap: 8px;
-  width: 100%;
   height: 56px;
+  width: 280px;
   background: #121212;
   font-weight: 500;
   font-size: 16px;
@@ -1902,6 +1907,10 @@ input[type='radio'] {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #FFFFFF;
+}
+
+#submitOrderBtn {
+  display: none;
 }
 
 .delete-button {
@@ -2053,6 +2062,24 @@ input[type='radio'] {
 .order-quantity {
   width: 80px;
   font-size: 16px;
+}
+
+#cartItemCount {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: 1px solid black;
+    background-color: #FFF;
+    border-radius: 50%;
+    padding: 0 4px;
+    z-index: 200;
+}
+
+.formPay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 @media (min-width: 769px) {
@@ -2338,9 +2365,27 @@ input[type='radio'] {
   .order-info {
     width: 100%;
   }
+  .formPay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+  }
 }
 
 @media (min-width: 1440px) {
+  #cartItemCount {
+    position: absolute;
+    top: 34px;
+    right: 4%;
+    border: none;
+    padding: 0 4px;
+    z-index: 200;
+    background-color: transparent;
+  }
+  .slide-nav {
+    display: none;
+  }
   .order-pc {
     min-height: 825px;
   }

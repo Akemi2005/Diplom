@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="admin-panel" style="display: none;">
+        <h1>Admin Panel</h1>
+        <div class="log-btn">
+            <button onclick="logout()" class="logout">Logout</button>
+        </div>
+        <div id="tabs">
+            <div class="tab whiteborder">Orders</div>
+            <div class="tab">Subscription</div>
+            <div class="tabContent">
+                <div class="scrolling">
+                    <button onclick="prevOrderPage()">Previous</button>
+                    <span id="currentOrderPage">1</span>
+                    <button onclick="nextOrderPage()">Next</button>
+                </div>
+                <table id="orders-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Recipient Name</th>
+                        <th>Recipient Phone</th>
+                        <th>Delivery Date</th>
+                        <th>Delivery Time</th>
+                        <th>Street</th>
+                        <th>Apartment</th>
+                        <th>Cart Items</th>
+                        <th>Subtotal</th>
+                        <th>Shipping</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="orders-table-body"></tbody>
+                </table>
+            </div>
+            <div class="tabContent">
+                <div class="scrolling">
+                    <button onclick="prevSubscriptionPage()">Previous</button>
+                    <span id="currentSubscriptionPage">1</span>
+                    <button onclick="nextSubscriptionPage()">Next</button>
+                </div>
+                <table id="subscriptions-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Plan</th>
+                        <th>Frequency</th>
+                        <th>Deliveries</th>
+                        <th>Email</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="subscriptions-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="../index.html" class="home">Go to home page</a>
+    <div id="login-panel">
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="button" onclick="login()">Login</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = {"default_language":"en","languages":["en","uk"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"en":"usa"}}</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+</body>
+</html>

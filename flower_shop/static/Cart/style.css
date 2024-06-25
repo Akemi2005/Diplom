@@ -1,0 +1,45 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #121212;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+}
+
+#order-id {
+    font-weight: bold;
+    color: #121212;
+}
+
+.small-text {
+    font-size: 13px;
+}
+
+.home {
+    color: black;
+    font-size: 20px;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+}

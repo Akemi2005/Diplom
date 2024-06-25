@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
       };
 
-
     const menu = document.getElementById("window");
     const offset = menu.offsetTop;
     let lastScrollTop = 0; // Змінна для зберігання попереднього значення scrollTop
@@ -61,37 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ВВІД ТЕЛЕФОНА
-
-    const phoneInput = document.getElementById('phone');
     const phoneTInput = document.getElementById('phoneT');
-
-    phoneInput.addEventListener('input', ()=> {
-        // Перевіряємо, чи не починається значення вводу з "+380"
-        if (!phoneInput.value.startsWith('+380')) {
-            // Якщо не починається, то додаємо "+380" на початок значення
-            phoneInput.value = '+380' + phoneInput.value;
-        }
-        phoneInput.value = phoneInput.value.replace(/^(\+380)(\d{2})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5');
-    });
-
-    phoneInput.addEventListener('keypress', (event) => {
-        // Отримуємо charCode введеного символу
-        const charCode = event.charCode;
-        // Перевіряємо, чи символ не є цифрою (від 48 до 57 за ASCII-кодом)
-        if (charCode < 48 || charCode > 57) {
-            // Якщо символ не є цифрою, блокуємо його введення
-            event.preventDefault();
-        }
-    });
-
-    phoneTInput.addEventListener('input', ()=> {
-        // Перевіряємо, чи не починається значення вводу з "+380"
-        if (!phoneTInput.value.startsWith('+380')) {
-            // Якщо не починається, то додаємо "+380" на початок значення
-            phoneTInput.value = '+380' + phoneTInput.value;
-        }
-        phoneTInput.value = phoneTInput.value.replace(/^(\+380)(\d{2})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5');
-    });
 
     phoneTInput.addEventListener('keypress', (event) => {
         // Отримуємо charCode введеного символу
@@ -119,24 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Функція, яка активує відповідну навігаційну точку
-    function activateNavPoint(index) {
-        // Перебираємо всі навігаційні точки
-        slideNav.forEach((point, i) => {
-            if (i === index) {
-                point.classList.add("active"); // Додаємо клас "active" для активної точки
-            } else {
-                point.classList.remove("active"); // Видаляємо клас "active" для інших точок
-            }
-        });
-    }
-
     // Додаємо обробники подій для навігаційних точок
     slideNav.forEach((point, i) => {
         point.addEventListener("click", () => {
             currentIndex = i;
             showSlide(currentIndex);
-            activateNavPoint(currentIndex);
         });
     });
 
@@ -144,14 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function nextSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
         showSlide(currentIndex);
-        activateNavPoint(currentIndex);
     }
 
     // Функція для перехіду до попереднього слайду
     function prevSlide() {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         showSlide(currentIndex);
-        activateNavPoint(currentIndex);
     }
 
     // Додаємо обробники подій для кнопок прокрутки
@@ -163,8 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Показуємо перший слайд при завантаженні сторінки
     showSlide(currentIndex);
-    activateNavPoint(currentIndex);
-
 
     const phoneInputSubmit = document.getElementById('phoneT');
     const submitBtn = document.getElementById('submitBtn');

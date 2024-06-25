@@ -1,0 +1,123 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button {
+    height: 35px;
+    width: 100px;
+    background: #121212;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+.scrolling {
+    position: fixed;
+    top: 58px;
+    right: 20px;
+    margin: 20px 0;
+}
+
+.log-btn {
+    margin: 20px 0;
+    height: 50px;
+}
+
+.logout {
+    position: absolute;
+}
+
+#login-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#username, #password {
+    height: 35px;
+    margin-right: 5px;
+}
+
+#password {
+    margin-right: 10px;
+}
+
+#currentOrderPage, #currentSubscriptionPage {
+    padding: 0 10px;
+    font-size: 25px;
+}
+
+#tabs .tab {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+#tabs .whiteborder {
+    border: 1px solid #ddd;
+    border-radius: 3px 3px 0 0;
+    background-color: #f2f2f2;
+}
+
+#tabs .hide {
+    display: none;
+}
+
+#tabs .show {
+    display: block;
+}
+
+.home {
+    color: black;
+    font-size: 20px;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+}

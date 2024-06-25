@@ -1,8 +1,11 @@
+function clearCartItems() {
+    localStorage.removeItem('cartItems');
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     updateCartItemCount();
     const dropdownOrders = document.querySelectorAll('.dropdown-order');
 
-    // Отримуємо елементи DOM для обрахунку суми
     const subtotalAmountElement = document.getElementById('subtotalAmount');
     const shippingAmountElement = document.querySelector('.shipping p:last-child');
     const totalAmountElement = document.getElementById('totalAmount');
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let subtotal = 0;
         cartItems.forEach(item => {
-            subtotal += item.totalPrice * item.quantity;
+            subtotal += item.totalPrice;
         });
         const shipping = 5;
         const total = subtotal + shipping;
@@ -68,30 +71,22 @@ document.addEventListener('DOMContentLoaded', function () {
         Object.values(itemCountMap).forEach(item => {
             const productDiv = document.createElement('div');
             productDiv.classList.add('product');
-
             const image = document.createElement('img');
             image.src = item.image;
             image.alt = item.name;
-
             const productInfoDiv = document.createElement('div');
             productInfoDiv.classList.add('product-info');
-
             const labalQuantityDiv = document.createElement('div');
             labalQuantityDiv.classList.add('labal-quantity');
-
             const nameLabel = document.createElement('h3');
             nameLabel.textContent = item.name;
-
             const quantityLabel = document.createElement('p');
             quantityLabel.textContent = `Quantity: ${item.quantity}`;
-
             const priceDeleteDiv = document.createElement('div');
             priceDeleteDiv.classList.add('price-delete');
-
             const priceLabel = document.createElement('p');
             priceLabel.classList.add('price');
             priceLabel.textContent = '$' + item.totalPrice;
-
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
             deleteButton.classList.add('delete-button');
@@ -119,18 +114,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const submitOrderBtn = document.getElementById('submitOrderBtn');
 
-    submitOrderBtn.addEventListener('click', async function () {
-        const inputs = document.querySelectorAll('input[type="text"]');
-        const isAllFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-        if (!isAllFilled) {
-            alert('Please fill in all fields.');
-            return;
-        }
-        if (cartItems.length === 0) {
-            alert('Cart is empty. Please add items to cart before placing an order.');
-            return;
-        }
+    const order_id = generateOrderNumber();
+    function generateOrderNumber() {
+        const now = new Date();
+        const year = now.getFullYear().toString().slice(-2);
+        const month = ('0' + (now.getMonth() + 1)).slice(-2);
+        const day = ('0' + now.getDate()).slice(-2);
+        const hours = ('0' + now.getHours()).slice(-2);
+        const minutes = ('0' + now.getMinutes()).slice(-2);
+        const seconds = ('0' + now.getSeconds()).slice(-2);
+        const randomNum = Math.floor(Math.random() * 9000) + 1000;
+        return `${year}${month}${day}${hours}${minutes}${seconds}${randomNum}`;
+    }
 
+    submitOrderBtn.addEventListener('click', async function () {
         const email = document.getElementById('emailInput').value;
         const name = document.getElementById('nameInput').value;
         const phone = document.getElementById('phoneInput').value;
@@ -143,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const subtotal = parseFloat(subtotalAmountElement.textContent.replace('$', ''));
         const shipping = parseFloat(shippingAmountElement.textContent.replace('$', ''));
         const total = parseFloat(totalAmountElement.textContent.replace('$', ''));
-
         const data = {
+            order_id: order_id,
             email: email,
             name: name,
             phone: phone,
@@ -172,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const responseData = await response.json();
             if (responseData.success) {
                 alert('Order submitted successfully!');
+                order_id.value = '';
                 emailInput.value = '';
                 nameInput.value = '';
                 phoneInput.value = '';
@@ -194,62 +192,143 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    function generateOrderNumber() {
-        const now = new Date();
-
-        const year = now.getFullYear();
-        const month = ('0' + (now.getMonth() + 1)).slice(-2); // Додаємо 0, якщо місяць менше 10
-        const day = ('0' + now.getDate()).slice(-2); // Додаємо 0, якщо день менше 10
-        const hours = ('0' + now.getHours()).slice(-2); // Додаємо 0, якщо година менше 10
-        const minutes = ('0' + now.getMinutes()).slice(-2); // Додаємо 0, якщо хвилина менше 10
-        const seconds = ('0' + now.getSeconds()).slice(-2); // Додаємо 0, якщо секунда менше 10
-        const randomNum = Math.floor(Math.random() * 9000) + 1000;
-
-        return `${year}${month}${day}${hours}${minutes}${seconds}${randomNum}`;
-    }
-
     const totalAmount = parseFloat(totalAmountElement.textContent.replace('$', ''));
+
     const description = 'Оплата замовлення на сайті';
-    const orderNumber = generateOrderNumber();
 
     const data = {
-        public_key: 'sandbox_i98137437047',
         version: 3,
+        public_key: 'sandbox_i98137437047',
         action: 'pay',
         amount: totalAmount,
         currency: 'USD',
         description: description,
-        order_id: orderNumber,
-        sandbox: 1
+        order_id: order_id,
+        result_url: `http://localhost:3000/static/Cart/order-confirmation.html?order_id=${order_id}`,
     };
 
-    const requestData = encodeURIComponent(JSON.stringify(data));
-
+    const requestData = base64_encode(JSON.stringify(data));
     const signature = generateSignature(requestData);
 
-    const privatPayURL = `https://www.liqpay.ua/api/3/checkout?data=${requestData}&signature=${signature}`; // Додайте підпис (signature)
+    const privatPayURL = `https://www.liqpay.ua/api/3/checkout`;
+    const formPay = document.querySelector('.formPay');
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = privatPayURL;
+    form.acceptCharset = 'utf-8';
 
-    const privatPayButton = document.createElement('button');
-    privatPayButton.textContent = 'Оплатити через PrivatPay';
+    const dataInput = document.createElement('input');
+    dataInput.type = 'hidden';
+    dataInput.name = 'data';
+    dataInput.value = requestData;
 
-    privatPayButton.addEventListener('click', function() {
-        window.location.href = privatPayURL;
+    const signatureInput = document.createElement('input');
+    signatureInput.type = 'hidden';
+    signatureInput.name = 'signature';
+    signatureInput.value = signature;
+
+    form.appendChild(dataInput);
+    form.appendChild(signatureInput);
+
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Pay with LiqPay';
+    submitButton.type = 'submit';
+    submitButton.classList.add('next');
+
+    form.appendChild(submitButton);
+
+    formPay.appendChild(form);
+
+    submitButton.addEventListener('click', async function (event) {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const isAllFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+
+        const currentDate = new Date();
+        const currentDay = currentDate.getDate();
+        const currentMonth = currentDate.getMonth() + 1;
+
+        const inputDate = deliveryDateInput.value;
+        const parts = inputDate.split('.');
+        const inputDay = parseInt(parts[0], 10);
+        const inputMonth = parseInt(parts[1], 10);
+        const inputYear = currentDate.getFullYear();
+
+        const deliveryTime = deliveryTimeInput.value;
+        const [hours, minutes] = deliveryTime.split(':').map(Number);
+
+        // Створюємо дату доставки з року, місяця, дня, години та хвилини
+        const selectedDate = new Date(inputYear, inputMonth - 1, inputDay, hours, minutes);
+
+        if (!isAllFilled) {
+            alert('Please fill in all fields.');
+            event.preventDefault();
+            return;
+        }
+        if (cartItems.length === 0) {
+            alert('Cart is empty. Please add items to cart before placing an order.');
+            event.preventDefault();
+            return;
+        }
+        if (selectedDate < currentDate) {
+            alert('You have entered a past date or time. Please select a future date and time.');
+            deliveryDateInput.value = '';
+            deliveryTimeInput.value = '';
+            event.preventDefault();
+            return;
+        }
+        clearCartItems();
+        submitOrderBtn.click();
     });
-
-    const orderButtonContainer = document.getElementById('orderButtonContainer');
-    orderButtonContainer.appendChild(privatPayButton);
 
     function generateSignature(data) {
         const privateKey = 'sandbox_aXeCS7FocvdqaY0uVRXbkKjZZ82II9qtRp2GqoFO';
-        const hash = CryptoJS.SHA256(privateKey + data + privateKey);
-        return hash.toString(CryptoJS.enc.Hex);
+        const hash = CryptoJS.SHA1(privateKey + data + privateKey);
+        return hash.toString(CryptoJS.enc.Base64);
     }
 
-    console.log("Request Data:", requestData);
-    console.log("Generated Signature:", signature);
-    console.log("PrivatPay URL:", privatPayURL);
-    console.log("Дані перед генерацією підпису:", data);
-    console.log("Згенерований підпис:", signature);
+    function base64_encode(data) {
+        const encodedData = encodeURIComponent(data).replace(/%([0-9A-F]{2})/g,
+            (match, p1) => String.fromCharCode('0x' + p1));
+        return btoa(encodedData);
+    }
+
+    const phoneTInput = document.getElementById('phoneInput');
+    phoneTInput.addEventListener('keypress', (event) => {
+        const charCode = event.charCode;
+        if (charCode < 48 || charCode > 57) {
+            event.preventDefault();
+        }
+    });
+
+    const recipientPhoneInput = document.getElementById('recipientPhoneInput');
+    recipientPhoneInput.addEventListener('keypress', (event) => {
+        const charCode = event.charCode;
+        if (charCode < 48 || charCode > 57) {
+            event.preventDefault();
+        }
+    });
+
+    async function handleLiqPayCallback(orderId, status) {
+        try {
+            const response = await fetch(`/updateOrderStatus/${orderId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status })
+            });
+
+            const responseData = await response.json();
+            if (responseData.success) {
+                console.log('Order status updated successfully');
+            } else {
+                console.error('Failed to update order status:', responseData.message);
+            }
+        } catch (error) {
+            console.error('Error updating order status:', error);
+        }
+    }
+
 });
 
 function updateCartItemCount() {
